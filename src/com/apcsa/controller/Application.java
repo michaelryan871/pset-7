@@ -45,7 +45,7 @@ public class Application {
      * Displays an interface for root users.
      */
     
-    private void shootRootUI() {
+    private void showRootUI() {
     	while (activeUser != null) {
     		switch (getRootMenuSelection()) {
 	    		case PASSWORD: resetPassword(); break;
@@ -54,6 +54,30 @@ public class Application {
 	    		case SHUTDOWN: shutdown(); break;
 	    		default: System.out.println("\nInvalid selection."); break;
     		}
+    	}
+    }
+    
+    /*
+     * Retrieves a root user's menu selection.
+     * 
+     * @return the menu selection
+     */
+    
+    private RootAction getRootMenuSelection() {
+    	System.out.println();
+    	
+    	System.out.println("[1] Reset user password.");
+    	System.out.println("[2] Factory reset database.");
+    	System.out.println("[3] Logout.");
+    	System.out.println("[4] Shutdown.");
+    	System.out.println("\n:::");
+    	
+    	switch (Utils.getInt(in, -1)) {
+    		case 1: return RootAction.PASSWORD; 
+    		case 2: return RootAction.DATABASE; 
+    		case 3: return RootAction.LOGOUT;
+    		case 4: return RootAction.SHUTDOWN; 
+    		default: return null;
     	}
     }
     
