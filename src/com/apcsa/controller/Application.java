@@ -81,6 +81,42 @@ public class Application {
     	}
     }
     
+    /*
+     * Shuts down the application after encountering an error.
+     * 
+     * @param e the error that initialized the shutdown sequence
+     */
+    
+    private void shutdown (Exception e) {
+    	if (in != null) {
+    		in.close();
+    	}
+    	
+    	System.out.println("Encountered unrecoverable error. Shuting down...\n");
+    	System.out.println(e.getMessage());
+    	
+    	System.out.println("\nGoodbye!");
+    	System.exit(0);
+    }
+    
+    /*
+     * Releases all resources and kills the application.
+     */
+    
+    private void shutdown() {
+    	System.out.println();
+    	
+    	if (Utils.confirm(in, "Are you sure? (y/n) ")) {
+    		if (in != null) {
+    			in.close();
+    		}
+    		
+    		System.out.println("\nGoodbye!");
+    		System.exit(0);
+    		
+    	}
+    }
+    
     /**
      * Starts the PowerSchool application.
      */
