@@ -9,6 +9,8 @@ public class Application {
     private Scanner in;
     private User activeUser;
 
+    enum RootAction { PASSWORD, DATABASE, LOGOUT, SHUTDOWN }
+    
     /**
      * Creates an instance of the Application class, which is responsible for interacting
      * with the user via the command line interface.
@@ -25,12 +27,43 @@ public class Application {
     }
 
     /**
+     * Displays an user type-specific menu with which the user
+     * navigates and interacts with the application.
+     */
+    
+    public void createAndShowUI() {
+    	System.out.println("\nHello, again, " + activeUser.getFirstName() + "!");
+    	
+    	if (activeUser.isRoot()) {
+    		showRootUI();
+    	} else {
+    		//TODO - add cases for admin, teacher, student, and unknown
+    	}
+    }
+    
+    /*
+     * Displays an interface for root users.
+     */
+    
+    private void shootRootUI() {
+    	while (activeUser != null) {
+    		switch (getRootMenuSelection()) {
+	    		case PASSWORD: resetPassword(); break;
+	    		case DATABASE: factoryReset(); break;
+	    		case LOGOUT: logout(); break;
+	    		case SHUTDOWN: shutdown(); break;
+	    		default: System.out.println("\nInvalid selection."); break;
+    		}
+    	}
+    }
+    
+    /**
      * Starts the PowerSchool application.
      */
 
     public void startup() {
         System.out.println("PowerSchool -- now for students, teachers, and school administrators!");
-
+        
         // continuously prompt for login credentials and attempt to login
 
         while (true) {
@@ -40,8 +73,8 @@ public class Application {
             System.out.print("Password: ");
             String password = in.next();
 
-            // if login is successful, update generic user to administrator, teacher, or student
-
+            // if login is successful, update generic user to administrator, teacher, or student         
+            
             if (login(username, password)) {
                 activeUser = activeUser.isAdministrator()
                     ? PowerSchool.getAdministrator(activeUser) : activeUser.isTeacher()
@@ -57,9 +90,12 @@ public class Application {
                 //
                 // remember, the interface will be difference depending on the type
                 // of user that is logged in (root, administrator, teacher, student)
+                createAndShowUI();
             } else {
                 System.out.println("\nInvalid username and/or password.");
             }
+        } catch (Exception e) {
+        	shutdown(e);
         }
     }
 
