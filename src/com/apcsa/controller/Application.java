@@ -132,7 +132,33 @@ public class Application {
     	//		print success message
     	//
     }
+    
+    /*
+     * Resets the database to its factory settings.
+     */
+    
+    private void factoryReset() {
+    	//
+    	// ask root user to confirm intent to reset the database
+        // if confirmed...
+    	//		call database initialize method with parameter of true
+    	//		print success message
+    	//
     }
+    
+    /*
+     * Logs out of the application.
+     */
+    
+    private void logout() {
+    	// 
+    	// ask user to confirm intent to logout
+    	//
+    	// if confirmed...
+    	//		set activeUser to null
+    	//
+    }
+    
     
     /**
      * Starts the PowerSchool application.
