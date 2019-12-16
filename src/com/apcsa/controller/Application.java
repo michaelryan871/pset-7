@@ -3,6 +3,8 @@ package com.apcsa.controller;
 import java.util.Scanner;
 import com.apcsa.data.PowerSchool;
 import com.apcsa.model.User;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Application {
 
@@ -248,7 +250,7 @@ public class Application {
      * @return true if the user confirms; false otherwise
      */
     
-    public static boolean confirm(scanner in, String message) {
+    public static boolean confirm(Scanner in, String message) {
     	String response = "";
     	
     	// prompt user for explicit response of yes or no
@@ -268,7 +270,7 @@ public class Application {
      * @return the updated list of students
      */
     
-    @SupressWarnings ({ "unchecked", "rawtypes" })
+    @SuppressWarnings ({ "unchecked", "rawtypes" })
     public static ArrayList<Student> updateRanks(ArrayList<Student> students) {
     	Collections.sort(students, new Comparator() {
     		
@@ -333,6 +335,36 @@ public class Application {
     	// compute weights and averages based on entered grades
     	
     	
+    	if (mps > 0 && exams > 0) {
+    		mpAvg = mpSum / mps;
+    		examAvg = examSum / exams; 
+    		
+    		mpWeight = 0.8; 
+    		examWeight = 0.2;
+    	} else if (mps > 0) {
+    		mpAvg = mpSum / mps;
+    		
+    		mpWeight = 0.0; 
+    		examWeight = 1.0;
+    	} else {
+    		return null;
+    	}
+    	return round(mpAvg * mpWeight + examAvg * examWeight, 2);
+    }
+    
+    
+    /**
+     * Rounds a number to a set number of decimal places.
+     * 
+     * @param value the value to round
+     * @param places the number of decimal places
+     * @return the rounded values
+     */
+    
+    private static double round(double value, int places) {
+    	return new BigDecimal(Double.toString(value))
+    		.setScale(places, RoundingMode.HALF_UP)
+    		.doubleValue();
     }
     
     	
