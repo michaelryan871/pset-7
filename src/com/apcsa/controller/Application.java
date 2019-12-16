@@ -161,6 +161,86 @@ public class Application {
     
     
     /**
+     * Resets a user's password.
+     * 
+     * @param username the user's username
+     */
+    
+    public static void resetPassword(String username) {
+    	//
+        // get a connection to the database
+        // create a prepared statement (both of thses should go in a try-with-resources statement)
+        //
+        // insert parameters into the prepared statement
+        //      - the user's hashed username
+        //      - the user's plaintext username
+        //
+        // execute the update statement
+        //
+    }
+    
+    /*
+     * Resets another user's password and last login timestamp.
+     */
+        
+    //
+    // upset the users table
+    // two columns need to be updated
+	//          - auth
+	//          - last_login
+    //
+    // auth will be set to the hash of the user's username
+    // last_login will be reverted to 0000-00-00 00:00:00.000
+    //
+    // only modify rows where username matches parameter provided
+
+    
+    /** 
+     * Returns an MD5 hash of the user's plaintext password.
+     * 
+     * @param plaintext the password
+     * @return an MD5 hash of the password
+     */
+    
+    public static String getHash(String plaintext) {
+    	Stringbuilder pwd = new Stringbuilder(); 
+    	
+    	try {
+    		MessageDigest md = MessageDigest.getInstance("MD5");
+    		
+    		md.update(plaintext.getBytes());
+    		byte[] digest = md.digest(plaintext.getBytes());
+    		
+    		for (int i = 0; i < digest.length; i++) {
+    			pwd.append(Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1));
+    			
+    		}
+    	} catch (NoSuchAlgorithmException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return pwd.toString();
+    }
+    
+    /**
+     * Safetly reads an integer from the user. 
+     * 
+     * @param in the Scanner
+     * @param invalid an invalid (but type-safe) default
+     * @return the value entered by the user or the invalid default
+     */
+    
+    public static int getInt(Scanner in, int invalid) {
+    	try {
+    		return in.nextInt(); // try to read and return user-provided value 
+    	} catch (InputMismatchException e) {
+    		return invalid; // return default in the even of an type mismatch
+    	} finally {
+    		in.nextLine(); //always consume the dangling newline character
+    	}
+    }
+    
+    /**
      * Starts the PowerSchool application.
      */
 
