@@ -262,6 +262,42 @@ public class Application {
     }
     
     /**
+     * Sorts the list of students by rank, using the index to update the underlying class rank.
+     * 
+     * @param students the list of students
+     * @return the updated list of students
+     */
+    
+    @SupressWarnings ({ "unchecked", "rawtypes" })
+    public static ArrayList<Student> updateRanks(ArrayList<Student> students) {
+    	Collections.sort(students, new Comparator() {
+    		
+    		//compares each student based on gpa to aid sorting
+    		
+    		@Override
+    		public int compare(Object student1, Object student2) {
+    			if (((Student) student1).getGpa() > ((Student) student2).getGpa()) {
+    				return -1; 
+    			} else if (((Student) student 1).getGpa() == ((Student) student2).getGpa()) {
+    				return 0;
+    			} else {
+    				return 1; 
+    			}
+    		}
+    });
+    	
+    	// applies a class rank (provided the student has a measureable gpa)
+    	
+    	int rank = 1;
+    	for (int i = 0; i < students.size(); i++) {
+    		Student student = students.get(i)
+    				
+    		student.setClassRank(student.getGpa() != -1 ? rank++ : 0);
+    	}
+    	
+    	return students;
+    
+    /**
      * Starts the PowerSchool application.
      */
 
