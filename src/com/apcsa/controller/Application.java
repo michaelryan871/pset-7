@@ -117,6 +117,23 @@ public class Application {
     	}
     }
     
+    /*
+     * Allows a root user to reset another user's password.
+     */
+    
+    private void resetPassword() {
+    	//
+    	// prompt root user to enter username of user whose password needs to be reset
+    	//
+    	// ask root user to confirm intent to reset the password for that username
+    	//
+    	// if confirmed...
+    	//      call database method to reset password for username
+    	//		print success message
+    	//
+    }
+    }
+    
     /**
      * Starts the PowerSchool application.
      */
