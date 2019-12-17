@@ -164,6 +164,78 @@ public class Administrator extends User {
     	//		it'll be the same as their username 
     }
     
+    /*
+     * Retrieves the user's department selection.
+     * 
+     * @return the selected department
+     */
+    
+    private int getDepartmentSelection() {
+    	int selection = -1; 
+    	System.out.println("\nChoose a department.");
+    	
+    	while (selection < 1 || selection > 6) {
+    		System.out.println("\n[1] Computer Science.");
+    		System.out.println("[2] English.");
+    		System.out.println("[3] History.");
+    		System.out.println("[4] Mathematics.");
+    		System.out.println("[5] Physical Education.");
+    		System.out.println("[6] Science.");
+    		
+    		selection = Utils.getInt(in, -1);
+    	}
+    	
+    	return selection; 
+    }
+   
+    /*
+     * Retrieves a user's grade selection.
+     * 
+     * @return the selected grade
+     */
+    
+    private int getGradeSelecion() {
+    	int selection = -1; 
+    	System.out.println("\nChoose a grade level.");
+    	
+    	while (selection < 1 || selection > 4) {
+    		System.out.println("\n[1] Freshman.");
+    		System.out.println("[2] Sophomore.");
+    		System.out.println("[3] Junior.");
+    		System.out.println("[4] Senior.");
+    		System.out.println("\n:::");
+    				
+    		selection = Utils.getInt(in, -1);
+    	}
+    		
+    	return selection + 8; 	// +8 because you want a value between 9 and 12 
+    }
+    
+    
+    /*
+     * Retrieves a user's course selection
+     * 
+     * @return the selected course
+     */
+    
+    private String getCourseSelection() throws SQLException {
+    	boolean valid = false; 
+    	String courseNo = null; 
+    	
+    	while (!valid) {
+    		System.out.print("\nCourse No.: ");
+    		courseNo = in.next();
+    		
+    		if (/* is a valid course number */) {
+    			valid = true; 
+    		} else {
+    			System.out.println("\nCourse not found.");
+    		}
+    	}
+    	
+    	return courseNo;
+    }
+    
     /** 
      * Creates an instance of the Administrator class. 
      * 
