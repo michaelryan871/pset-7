@@ -3,6 +3,7 @@ package com.apcsa.model;
 import com.apcsa.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList; 
 
 public class Administrator extends User {
 
@@ -62,6 +63,26 @@ public class Administrator extends User {
     	
     	return null; 
     }
+    
+    /*
+     * Displays all faculty members. 
+     */
+    
+    private void viewFaculty() {
+    	ArrayList<Teacher> teachers = PowerSchool.getTeachers(); 
+    	
+    	if (teachers.isEmpty()) {
+    		System.out.println("\nNo teachers to display.");
+    	} else {
+    		System.out.println();
+    		
+    		int i = 1; 
+    		for (Teacher teacher : teachers) {
+    			System.out.println(i++ + ". " + teacher.getName() + " / " + teacher.getDepartment());
+    		}
+    	}
+    }
+    
     
     
     /** 
