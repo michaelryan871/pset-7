@@ -83,6 +83,22 @@ public class Administrator extends User {
     	}
     }
     
+    /*
+     * Displays all faculty members by department. 
+     */
+    
+    private void viewFacultyByDepartment() {
+    	//
+    	// get a list of teachers by deparment (this requires a database call)
+    	//		to do this, you'll need to prompt the user to choose a department (more on this later)
+    	//
+    	// if list of teachers is empty...
+    	//		print a message saying exactly that
+    	// otherwise... 
+    	//		print the list of teachers by name an department (just like last time)
+    	//
+    }
+    
     
     
     /** 
