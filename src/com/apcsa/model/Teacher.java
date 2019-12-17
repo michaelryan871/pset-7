@@ -15,19 +15,36 @@ public class Teacher extends User {
     /**
      * Creates an instance of the Teacher class.
      * 
-     * @param user
      * @param rs 
      * @throws SQLException
      */
     
-    public Teacher(User user, ResultSet rs) throws SQLException {
-    	super(user);
+    public Teacher(ResultSet rs) throws SQLException {
+    	super(-1, "teacher", null, null, null);
     	
     	this.teacherId = rs.getInt("teacher_id");
     	this.departmentId = rs.getInt("department_id");
     	this.firstName = rs.getString ("first_name");
     	this.lastName = rs.getString ("last_name");
     	this.departmentName = rs.getString("department_id");
+    }
+    
+    /**
+     * @return departmentName
+     */
+    
+    public String getDepartmentName() {
+    	return departmentName;
+    }
+    
+    /**
+     * Retrieves the student's name formatted as LAST, FIRST. 
+     * 
+     * @return the formatted name
+     */
+    
+    public String getName() {
+    	return lastName + ", " + firstName; 
     }
     
 }
