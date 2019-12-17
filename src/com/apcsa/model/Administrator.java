@@ -99,7 +99,70 @@ public class Administrator extends User {
     	//
     }
     
+    /*
+     * Displays all students.
+     */
     
+    private void viewStudents() {
+    	//
+    	// get a list of students
+    	// 
+    	// if list of students is empty...
+    	//		print a message saying exactly that
+    	// otherwise...
+    	//		print the list of students by name and graduation year
+    	//
+    }
+    
+    /*
+     * Displays all students by grade. 
+     */
+    
+    private void viewStudentsByGrade() {
+    	//
+    	// get list of students by grade
+    	//		to do this, you'll need to prompt the user to choose a grade level (more on this later)
+    	//
+    	// if the list of students is empty...
+    	//		print a message saying exactly that
+    	// otherwise...
+    	//		print the list of students by name and class rank
+    	//
+    }
+    
+    /*
+     * Displays all students by course.
+     */
+    
+    private void viewStudentsByCourse() {
+    	//
+    	// get a list of students by course
+    	//		to do this, you'll need to prompt the user to choose a course (more on this later)
+    	//
+    	// if the list of students is empty...
+    	//		print a message saying exactly that
+    	// otherwise...
+    	//		print the list of students by name and grade point average
+    	//
+    }
+    
+    /*
+     * Allows a user to change his or her password.
+     * 
+     * @param firstLogin true if the user has never logged in; false otherwise
+     */
+    
+    private void changePassword(boolean firstLogin) {
+    	// if it isn't the user's first login...
+    	//		ask the user for his or her current password
+    	//
+    	// ask all users (first login or not) to enter a new password
+    	//
+    	// change the password (this will require a call to the database)
+    	//		this requires three pieces of information: the username, the old password, and the new password
+    	//		the old password will either be something the use entered (if it isn't his or her first login) or 
+    	//		it'll be the same as their username 
+    }
     
     /** 
      * Creates an instance of the Administrator class. 
